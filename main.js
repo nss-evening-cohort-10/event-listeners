@@ -76,12 +76,20 @@ const buttonClick = (e) => {
             selectedPies.push(pie)
         }
     }
+
+    if (instructor === 'all') {
+        pieBuilder(pies);
+      } else {
+        pieBuilder(selectedPies);
+      }
     // pass small list of pies back into the pie builder
-    pieBuilder(selectedPies)
 }
 
 
 document.getElementById('zoeee').addEventListener('click', buttonClick)
 document.getElementById('michael').addEventListener('click', buttonClick)
+document.getElementById('greg').addEventListener('click', buttonClick)
+document.getElementById('callan').addEventListener('click', buttonClick)
+document.getElementById('all').addEventListener('click', buttonClick)
 
-// pieBuilder(pies)
+pieBuilder(pies)
