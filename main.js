@@ -38,30 +38,50 @@ const pies = [
   ];
 
   const printToDom = (toPrint, divId) => {
-      document.getElementById(divId).innerHTML += toPrint
+      document.getElementById(divId).innerHTML = toPrint
   }
 
   const pieBuilder = (piesArray) => {
+      let domString = ''
     for (let i = 0; i < piesArray.length; i++) {
         const pie = piesArray[i]
-        const domString = `
+        domString += `
         <div class="card">
             <h2>${pie.name}</h2>
             <img src=${pie.imageUrl} alt='Image of ${pie.name}' />
         </div>
         `
-        printToDom(domString, 'pie-zone')
     }
+    printToDom(domString, 'pie-zone')
   }
 
-document.getElementById('my-button').addEventListener('click', pieBuilder)
+// document.getElementById('my-button').addEventListener('click', pieBuilder)
 
-document.getElementById('my-button').addEventListener('click', () => {
-    pieBuilder(pies)
-})
+// document.getElementById('my-button').addEventListener('click', () => {
+//     pieBuilder(pies)
+// })
 
-document.getElementById('my-button').addEventListener('click', () => {
-    console.log('🐁')
-})
+// document.getElementById('my-button').addEventListener('click', () => {
+//     console.log('🐁')
+// })
 
-pieBuilder(pies)
+const buttonClick = (e) => {
+    // figure out WHO this instructor is for the button we clicked on
+    const instructor = e.target.id
+    // only get those pies from the list of all the pies
+    const selectedPies = []
+    for (let i = 0; i < pies.length; i ++) {
+        const pie = pies[i]
+        if (pie.instructor === instructor) {
+            selectedPies.push(pie)
+        }
+    }
+    // pass small list of pies back into the pie builder
+    pieBuilder(selectedPies)
+}
+
+
+document.getElementById('zoeee').addEventListener('click', buttonClick)
+document.getElementById('michael').addEventListener('click', buttonClick)
+
+// pieBuilder(pies)
